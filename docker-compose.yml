@@ -1,0 +1,104 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-concesionaria
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - concesionaria-net
+
+  eureka-server:
+    build:
+      context: .                     # ← raíz del proyecto, no eureka-server/
+      dockerfile: ./eureka-server/Dockerfile
+    working_dir: /app/eureka-server
+    command: ["java", "-jar", "target/eureka-server.jar"]
+    ports:
+      - "8761:8761"
+    networks:
+      - concesionaria-net
+
+  concesionaria-service:
+    build:
+      context: .                  
+      dockerfile: ./concesionaria-service/Dockerfile
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - concesionaria-net
+
+  vehiculos-stock-service:
+    build:
+      context: .                  
+      dockerfile: ./vehiculos-stock-service/Dockerfile
+    ports:
+      - "8082:8082"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - concesionaria-net
+
+  clientes-service:
+    build:
+      context: .                  
+      dockerfile: ./clientes-service/Dockerfile
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - concesionaria-net
+
+  ventas-service:
+    build:
+      context: .                  
+      dockerfile: ./ventas-service/Dockerfile
+    ports:
+      - "8084:8084"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - concesionaria-net
+
+  servicios-mecanicos-service:
+    build:
+      context: .                  
+      dockerfile: ./servicios-mecanicos-service/Dockerfile
+    ports:
+      - "8085:8085"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - concesionaria-net
+
+networks:
+  concesionaria-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
