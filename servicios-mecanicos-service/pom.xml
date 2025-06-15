@@ -6,9 +6,9 @@
 
     <parent>
         <groupId>com.concesionaria</groupId>
-        <artifactId>concesionaria-sistema</artifactId>
+        <artifactId>concesionaria-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../concesionaria-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>servicios-mecanicos-service</artifactId>
