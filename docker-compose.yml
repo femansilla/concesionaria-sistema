@@ -19,8 +19,6 @@ services:
     build:
       context: .                     # ← raíz del proyecto, no eureka-server/
       dockerfile: ./eureka-server/Dockerfile
-    working_dir: /app/eureka-server
-    command: ["java", "-jar", "target/eureka-server.jar"]
     ports:
       - "8761:8761"
     networks:
