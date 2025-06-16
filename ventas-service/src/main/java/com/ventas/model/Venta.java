@@ -20,6 +20,7 @@ public class Venta {
     private Long empleadoId;
     private Long vehiculoId;
 
+    private Integer cantidad;
     private BigDecimal monto;
     private LocalDate fechaOperacion;
 }

@@ -1,0 +1,24 @@
+para levantar eureka:
+    mvn -pl eureka-server spring-boot:run
+
+para levantar los demas servicios
+1ro hay que levantar el docker compose con la instancia de mysql y el phpmyadmin
+    en teoria con el comando basico de docker-compose va a andar porque comente lo relacionado a los servicios
+        docker-compose up
+
+2do hay que cargar en el entorno las variables desde el archivo .env que esta en la raiz del proyecto
+    para esto tenemos el script de PS en el mismo lugar, se ejecuta con este comando
+        . .\load-env.ps1
+
+3ro levantamos de la instancia del servicio que vamos a probar por ejemplo:
+    mvn -pl concesionaria-service spring-boot:run
+
+desde el localhost:8761 vemos eureka
+    aca adentro vamos a tener el servicio listado
+
+
+
+
+en algun momento hay que implementar el apigateway
+referencias del proyecto:
+    https://dev.to/isaactony/building-your-first-microservice-system-with-spring-boot-a-beginners-guide-3b28

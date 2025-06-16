@@ -1,6 +1,7 @@
 package com.concesionaria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Provincia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nombre;
 
     @ManyToOne

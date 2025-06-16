@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "VehiculosApplication",
+            "request": "launch",
+            "mainClass": "com.vehiculos.VehiculosApplication",
+            "projectName": "vehiculos-stock-service"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-EurekaServerApplication<eureka-server>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

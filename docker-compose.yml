@@ -19,7 +19,7 @@ services:
     image: phpmyadmin:latest
     container_name: phpmyadmin-concesionaria
     ports:
-      - "8082:80"
+      - "8040:80"
     links:
       - mysql:mysql
     depends_on:
