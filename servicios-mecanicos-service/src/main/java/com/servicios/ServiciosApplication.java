@@ -1,4 +1,4 @@
-package main.java.com.servicios;
+package com.servicios;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

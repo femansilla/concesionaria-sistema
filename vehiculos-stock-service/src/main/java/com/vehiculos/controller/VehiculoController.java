@@ -1,4 +1,4 @@
-package main.java.com.vehiculos.controller;
+package com.vehiculos.controller;
 
 import com.vehiculos.model.Vehiculo;
 import com.vehiculos.repository.VehiculoRepository;

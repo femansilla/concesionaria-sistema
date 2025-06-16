@@ -1,4 +1,4 @@
-package main.java.com.servicios.controller;
+package com.servicios.controller;
 
 import com.servicios.model.ServicioMecanico;
 import com.servicios.repository.ServicioMecanicoRepository;

@@ -1,4 +1,4 @@
-package main.java.com.servicios.repository;
+package com.servicios.repository;
 
 import com.servicios.model.ServicioMecanico;
 import org.springframework.data.jpa.repository.JpaRepository;

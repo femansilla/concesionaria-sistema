@@ -1,4 +1,4 @@
-package main.java.com.concesionaria.repository;
+package com.concesionaria.repository;
 
 import com.concesionaria.model.Localidad;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package main.java.com.vehiculos.model;
+package com.vehiculos.model;
 
 import jakarta.persistence.*;
 import lombok.*;

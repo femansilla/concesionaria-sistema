@@ -1,4 +1,4 @@
-package main.java.com.ventas.controller;
+package com.ventas.controller;
 
 import com.ventas.model.Venta;
 import com.ventas.repository.VentaRepository;

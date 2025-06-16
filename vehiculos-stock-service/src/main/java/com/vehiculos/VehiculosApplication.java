@@ -1,4 +1,4 @@
-package main.java.com.vehiculos;
+package com.vehiculos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

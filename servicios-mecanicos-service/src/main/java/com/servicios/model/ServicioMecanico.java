@@ -1,4 +1,4 @@
-package main.java.com.servicios.model;
+package com.servicios.model;
 
 import jakarta.persistence.*;
 import lombok.*;

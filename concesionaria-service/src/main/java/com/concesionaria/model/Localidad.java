@@ -1,4 +1,4 @@
-package main.java.com.concesionaria.model;
+package com.concesionaria.model;
 
 import jakarta.persistence.*;
 import lombok.*;

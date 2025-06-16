@@ -1,4 +1,4 @@
-package main.java.com.vehiculos.repository;
+package com.vehiculos.repository;
 
 import com.vehiculos.model.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;

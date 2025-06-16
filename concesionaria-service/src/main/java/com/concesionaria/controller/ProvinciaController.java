@@ -1,4 +1,4 @@
-package main.java.com.concesionaria.controller;
+package com.concesionaria.controller;
 
 import com.concesionaria.model.Provincia;
 import com.concesionaria.repository.ProvinciaRepository;

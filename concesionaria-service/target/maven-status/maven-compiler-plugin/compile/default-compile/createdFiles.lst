@@ -1,0 +1,17 @@
+com\concesionaria\controller\PaisController.class
+com\concesionaria\model\Provincia$ProvinciaBuilder.class
+com\concesionaria\repository\LocalidadRepository.class
+com\concesionaria\repository\ConcesionariaRepository.class
+com\concesionaria\model\Pais$PaisBuilder.class
+com\concesionaria\controller\ProvinciaController.class
+com\concesionaria\model\Pais.class
+com\concesionaria\controller\ConcesionariaController.class
+com\concesionaria\model\Provincia.class
+com\concesionaria\controller\LocalidadController.class
+com\concesionaria\model\Localidad$LocalidadBuilder.class
+com\concesionaria\ConcesionariaApplication.class
+com\concesionaria\repository\PaisRepository.class
+com\concesionaria\model\Localidad.class
+com\concesionaria\model\Concesionaria.class
+com\concesionaria\model\Concesionaria$ConcesionariaBuilder.class
+com\concesionaria\repository\ProvinciaRepository.class

@@ -1,4 +1,4 @@
-package main.java.com.clientes.controller;
+package com.clientes.controller;
 
 import com.clientes.model.Cliente;
 import com.clientes.repository.ClienteRepository;
