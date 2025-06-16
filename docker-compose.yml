@@ -15,84 +15,101 @@ services:
     networks:
       - concesionaria-net
 
-  eureka-server:
-    build:
-      context: .                     # ← raíz del proyecto, no eureka-server/
-      dockerfile: ./eureka-server/Dockerfile
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-concesionaria
     ports:
-      - "8761:8761"
+      - "8082:80"
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql #http://127.0.0.1:0:3306/orderservice
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root123
     networks:
       - concesionaria-net
 
-  concesionaria-service:
-    build:
-      context: .                  
-      dockerfile: ./concesionaria-service/Dockerfile
-    ports:
-      - "8081:8081"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - concesionaria-net
+  # eureka-server:
+  #   build:
+  #     context: .                     # ← raíz del proyecto, no eureka-server/
+  #     dockerfile: ./eureka-server/Dockerfile
+  #   ports:
+  #     - "8761:8761"
+  #   networks:
+  #     - concesionaria-net
 
-  vehiculos-stock-service:
-    build:
-      context: .                  
-      dockerfile: ./vehiculos-stock-service/Dockerfile
-    ports:
-      - "8082:8082"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - concesionaria-net
+  # concesionaria-service:
+  #   build:
+  #     context: .                  
+  #     dockerfile: ./concesionaria-service/Dockerfile
+  #   ports:
+  #     - "8081:8081"
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql
+  #     - eureka-server
+  #   networks:
+  #     - concesionaria-net
 
-  clientes-service:
-    build:
-      context: .                  
-      dockerfile: ./clientes-service/Dockerfile
-    ports:
-      - "8083:8083"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - concesionaria-net
+  # vehiculos-stock-service:
+  #   build:
+  #     context: .                  
+  #     dockerfile: ./vehiculos-stock-service/Dockerfile
+  #   ports:
+  #     - "8082:8082"
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql
+  #     - eureka-server
+  #   networks:
+  #     - concesionaria-net
 
-  ventas-service:
-    build:
-      context: .                  
-      dockerfile: ./ventas-service/Dockerfile
-    ports:
-      - "8084:8084"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - concesionaria-net
+  # clientes-service:
+  #   build:
+  #     context: .                  
+  #     dockerfile: ./clientes-service/Dockerfile
+  #   ports:
+  #     - "8083:8083"
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql
+  #     - eureka-server
+  #   networks:
+  #     - concesionaria-net
 
-  servicios-mecanicos-service:
-    build:
-      context: .                  
-      dockerfile: ./servicios-mecanicos-service/Dockerfile
-    ports:
-      - "8085:8085"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - concesionaria-net
+  # ventas-service:
+  #   build:
+  #     context: .                  
+  #     dockerfile: ./ventas-service/Dockerfile
+  #   ports:
+  #     - "8084:8084"
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql
+  #     - eureka-server
+  #   networks:
+  #     - concesionaria-net
+
+  # servicios-mecanicos-service:
+    # build:
+    #   context: .                  
+    #   dockerfile: ./servicios-mecanicos-service/Dockerfile
+    # ports:
+    #   - "8085:8085"
+    # env_file:
+    #   - .env
+    # depends_on:
+    #   - mysql
+    #   - eureka-server
+    # networks:
+    #   - concesionaria-net
 
 networks:
   concesionaria-net:

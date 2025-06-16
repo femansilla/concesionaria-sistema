@@ -10,12 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>../eureka-server</module>
-        <module>../concesionaria-service</module>
-        <module>../vehiculos-stock-service</module>
-        <module>../clientes-service</module>
-        <module>../ventas-service</module>
-        <module>../servicios-mecanicos-service</module>
+        <module>./eureka-server</module>
+        <module>./concesionaria-service</module>
+        <module>./vehiculos-stock-service</module>
+        <module>./clientes-service</module>
+        <module>./ventas-service</module>
+        <module>./servicios-mecanicos-service</module>
     </modules>
 
     <name>Concesionaria Parent Project</name>
