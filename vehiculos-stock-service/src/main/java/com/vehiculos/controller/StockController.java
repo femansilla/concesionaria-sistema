@@ -5,6 +5,7 @@ import com.vehiculos.model.Stock;
 import com.vehiculos.model.Vehiculo;
 import com.vehiculos.repository.StockRepository;
 import com.vehiculos.repository.VehiculoRepository;
+import com.vehiculos.service.StockService;
 
 import jakarta.validation.Valid;
 
@@ -19,14 +20,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/stock")
 public class StockController {
 
-    private final StockRepository repository;
+    private final StockService service;
     private final VehiculoRepository vehiculoRepository;
     private final ConcesionariaFeignClient concesionariaClient;
 
-    public StockController(StockRepository repository,
+    public StockController(StockService service,
                            VehiculoRepository vehiculoRepository,
                            ConcesionariaFeignClient concesionariaClient) {
-        this.repository = repository;
+        this.service = service;
         this.vehiculoRepository = vehiculoRepository;
         this.concesionariaClient = concesionariaClient;
     }
@@ -34,13 +35,13 @@ public class StockController {
     // 1. Stock general (tal cual tabla)
     @GetMapping
     public List<Stock> findAll() {
-        return repository.findAll();
+        return service.findAll();
     }
 
     // 2. Stock de una concesionaria
     @GetMapping("/concesionaria/{id}")
     public List<Stock> findByConcesionaria(@PathVariable Long id) {
-        return repository.findByConcesionariaId(id);
+        return service.findByConcesionariaId(id);
     }
 
     // 3. Stock de un vehículo general (sin filtro)
@@ -57,7 +58,7 @@ public class StockController {
 
         // Si viene la concesionaria
         if (concesionariaId != null) {
-            List<Stock> stockList = repository.findByVehiculoIdAndConcesionariaId(vehiculoId, concesionariaId);
+            List<Stock> stockList = service.findByVehiculoIdAndConcesionariaId(vehiculoId, concesionariaId);
 
             if (!stockList.isEmpty() && stockList.get(0).getCantidad() > 0) {
                 Stock stock = stockList.get(0);
@@ -69,7 +70,7 @@ public class StockController {
             }
 
             // Si no hay stock local, se consulta el stock central
-            List<Stock> stockCentral = repository.findByVehiculoIdAndConcesionariaIdIsNull(vehiculoId);
+            List<Stock> stockCentral = service.findByVehiculoIdAndConcesionariaIdIsNull(vehiculoId);
 
             if (!stockCentral.isEmpty() && stockCentral.get(0).getCantidad() > 0) {
                 Stock central = stockCentral.get(0);
@@ -108,13 +109,21 @@ public class StockController {
         }
 
         // Si no se pasa concesionariaId, mostrar stock total por vehículo
-        List<Stock> todosStock = repository.findByVehiculoId(vehiculoId);
+        Optional<Stock> todosStock = service.findByVehiculoId(vehiculoId);
         return ResponseEntity.ok(todosStock);
     }
 
     // 4. Crear stock
     @PostMapping
     public Stock save(@RequestBody @Valid Stock stock) {
-        return repository.save(stock);
+        return service.save(stock);
+    }
+
+    @PutMapping("/descontar")
+    public ResponseEntity<Boolean> descontarStock(
+            @RequestParam(name = "vehiculoId") Long vehiculoId,
+            @RequestParam(name = "cantidad") Integer cantidad) {
+        boolean actualizado = service.descontarStock(vehiculoId, cantidad);
+        return ResponseEntity.ok(actualizado);
     }
 }

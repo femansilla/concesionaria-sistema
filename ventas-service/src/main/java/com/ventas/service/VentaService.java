@@ -11,6 +11,7 @@ import com.ventas.client.ClienteFeignClient;
 import com.ventas.repository.VentaRepository;
 import com.ventas.client.ServicioMecanicoFeignClient;
 import com.ventas.client.VehiculoFeignClient;
+import com.ventas.model.ServicioMecanicoDTO;
 import com.ventas.model.Venta;
 import com.ventas.model.VentaDTO;
 
@@ -35,6 +36,21 @@ public class VentaService {
     }
 
     public Venta save(Venta venta) {
+        if (venta.getServicioMecanicoId() != null) {
+            // Es una venta de servicio: crear registro en servicio-mecanico
+            ServicioMecanicoDTO servicioCreado = servicioMecanicoClient.crearServicio(venta.getServicioMecanicoId());
+            venta.setServicioMecanicoId(servicioCreado.getId());
+        }
+
+        if (venta.getVehiculoId() != null) {
+            // Es una venta de vehículo: actualizar stock
+            boolean actualizado = vehiculoClient.descontarStock(venta.getVehiculoId(), venta.getCantidad());
+            if (!actualizado) {
+                throw new IllegalStateException("No hay suficiente stock para el vehículo con ID: " + venta.getVehiculoId());
+            }
+        }
+
+        // Guardar la venta
         return repository.save(venta);
     }
 
