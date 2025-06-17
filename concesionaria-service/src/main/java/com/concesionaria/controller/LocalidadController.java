@@ -43,7 +43,7 @@ public class LocalidadController {
     }
 
     @PostMapping
-    public Localidad save(@RequestBody Localidad localidad) {
+    public Localidad save(@RequestBody @Valid Localidad localidad) {
         return repository.save(localidad);
     }
 }

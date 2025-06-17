@@ -16,6 +16,8 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String servicio;
+
     private Long clienteId;
     private Long empleadoId;
     private Long vehiculoId;

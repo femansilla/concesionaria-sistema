@@ -4,6 +4,8 @@ import com.concesionaria.model.Localidad;
 import com.concesionaria.model.Pais;
 import com.concesionaria.repository.PaisRepository;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +43,7 @@ public class PaisController {
     }
 
     @PostMapping
-    public Pais save(@RequestBody Pais pais) {
+    public Pais save(@RequestBody @Valid Pais pais) {
         return repository.save(pais);
     }
 }

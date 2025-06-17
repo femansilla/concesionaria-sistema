@@ -1,10 +1,12 @@
 package com.vehiculos.controller;
-import com.vehiculos.clients.ConcesionariaClient;
+import com.vehiculos.client.ConcesionariaFeignClient;
 import com.vehiculos.model.ConcesionariaDTO;
 import com.vehiculos.model.Stock;
 import com.vehiculos.model.Vehiculo;
 import com.vehiculos.repository.StockRepository;
 import com.vehiculos.repository.VehiculoRepository;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Map;
@@ -19,11 +21,11 @@ public class StockController {
 
     private final StockRepository repository;
     private final VehiculoRepository vehiculoRepository;
-    private final ConcesionariaClient concesionariaClient;
+    private final ConcesionariaFeignClient concesionariaClient;
 
     public StockController(StockRepository repository,
                            VehiculoRepository vehiculoRepository,
-                           ConcesionariaClient concesionariaClient) {
+                           ConcesionariaFeignClient concesionariaClient) {
         this.repository = repository;
         this.vehiculoRepository = vehiculoRepository;
         this.concesionariaClient = concesionariaClient;
@@ -112,7 +114,7 @@ public class StockController {
 
     // 4. Crear stock
     @PostMapping
-    public Stock save(@RequestBody Stock stock) {
+    public Stock save(@RequestBody @Valid Stock stock) {
         return repository.save(stock);
     }
 }

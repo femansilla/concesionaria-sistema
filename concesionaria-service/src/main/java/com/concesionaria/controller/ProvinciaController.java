@@ -4,6 +4,8 @@ import com.concesionaria.model.Localidad;
 import com.concesionaria.model.Provincia;
 import com.concesionaria.repository.ProvinciaRepository;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +43,7 @@ public class ProvinciaController {
     }
 
     @PostMapping
-    public Provincia save(@RequestBody Provincia provincia) {
+    public Provincia save(@RequestBody @Valid Provincia provincia) {
         return repository.save(provincia);
     }
 }
