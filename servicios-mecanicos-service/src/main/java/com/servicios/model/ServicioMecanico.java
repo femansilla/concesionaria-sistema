@@ -30,6 +30,6 @@ public class ServicioMecanico {
     @Min(value = 0, message = "El kilometraje no puede ser negativo")
     private Integer kilometros;
 
-    @NotNull(message = "Debe indicar si el servicio está en garantía")
+    @Column(nullable = false)
     private Boolean enGarantia;
 }

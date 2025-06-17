@@ -39,6 +39,23 @@ public class ServicioMecanicoService {
             throw new RuntimeException("Cliente o vehículo no válido");
         }
 
+        // Acceso al tipo de vehículo
+        Integer garantiaAnios = vehiculo.getTipoVehiculo().getGarantiaAnios();
+        Integer garantiaKm = vehiculo.getTipoVehiculo().getGarantiaKilometros();
+
+        // Evaluación de garantía
+        boolean enGarantia = false;
+        int aniosTranscurridos = LocalDate.now().getYear() - vehiculo.getAnio();
+        
+        if (servicio.getKilometros() != null && servicio.getKilometros() <= garantiaKm) {
+            enGarantia = true;
+        } else if (aniosTranscurridos <= garantiaAnios) {
+            enGarantia = true;
+        }
+
+        // Asignar automáticamente el valor de garantía
+        servicio.setEnGarantia(enGarantia);
+
         return repository.save(servicio);
     }
 
@@ -50,14 +67,11 @@ public class ServicioMecanicoService {
         return repository.findById(id);
     }
 
-    public List<ServicioMecanico> buscarFiltrado(Long clienteId, Long vehiculoId, Boolean enGarantia,
-                                             LocalDate desde, LocalDate hasta) {
+    public List<ServicioMecanico> buscarFiltrado(Long clienteId, Long vehiculoId, Boolean enGarantia) {
         return repository.findAll().stream()
                 .filter(s -> clienteId == null || s.getClienteId().equals(clienteId))
                 .filter(s -> vehiculoId == null || s.getVehiculoId().equals(vehiculoId))
                 .filter(s -> enGarantia == null || s.getEnGarantia().equals(enGarantia))
-                .filter(s -> desde == null || !s.getFechaEntrega().isBefore(desde))
-                .filter(s -> hasta == null || !s.getFechaEntrega().isAfter(hasta))
                 .toList();
     }
 

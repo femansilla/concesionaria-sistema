@@ -78,3 +78,13 @@ VALUES
 (1, 101, '2025-06-20', 45000, true),
 (2, 102, '2025-06-15', 89000, false);
 
+-- =====================
+-- VENTAS
+-- =====================
+-- Venta de un vehículo (sin servicio mecánico)
+INSERT INTO venta (cliente_id, empleado_id, vehiculo_id, cantidad, monto, fecha_operacion)
+VALUES (1, 2, 3, 1, 28000000.00, '2025-06-15');
+
+-- Venta de un servicio mecánico (con servicioMecanicoId)
+INSERT INTO venta (cliente_id, empleado_id, vehiculo_id, cantidad, monto, fecha_operacion, servicio_mecanico_id)
+VALUES (1, 2, 3, 1, 95000.00, '2025-06-15', 5);

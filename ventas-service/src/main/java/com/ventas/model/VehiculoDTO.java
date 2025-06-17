@@ -1,4 +1,4 @@
-package com.servicios.model;
+package com.ventas.model;
 
 import java.math.BigDecimal;
 
@@ -6,13 +6,12 @@ public class VehiculoDTO {
     private Long id;
     private String marca;
     private String modelo;
-    private TipoVehiculoDTO tipoVehiculo;
     private Integer anio;
     private BigDecimal precioUnidad;
+    private TipoVehiculoDTO tipoVehiculo;
 
     public VehiculoDTO() {}
-    
-    // getters y setters
+
     public Long getId() {
         return id;
     }
@@ -61,4 +60,3 @@ public class VehiculoDTO {
         this.tipoVehiculo = tipoVehiculo;
     }
 }
-

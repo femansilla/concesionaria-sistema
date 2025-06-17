@@ -40,7 +40,7 @@ public class ServicioMecanicoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServicioMecanico> findById(@PathVariable Long id) {
+    public ResponseEntity<ServicioMecanico> findById(@PathVariable("id") Long id) {
         return servicio.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -48,13 +48,11 @@ public class ServicioMecanicoController {
 
     @GetMapping("/filtro")
     public ResponseEntity<List<ServicioMecanico>> filtrar(
-            @RequestParam(required = false) Long clienteId,
-            @RequestParam(required = false) Long vehiculoId,
-            @RequestParam(required = false) Boolean enGarantia,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta) {
+            @RequestParam(name = "clienteId", required = false) Long clienteId,
+            @RequestParam(name = "vehiculoId", required = false) Long vehiculoId,
+            @RequestParam(name = "enGarantia", required = false) Boolean enGarantia) {
 
-        List<ServicioMecanico> resultados = servicio.buscarFiltrado(clienteId, vehiculoId, enGarantia, desde, hasta);
+        List<ServicioMecanico> resultados = servicio.buscarFiltrado(clienteId, vehiculoId, enGarantia);
         return ResponseEntity.ok(resultados);
     }
 

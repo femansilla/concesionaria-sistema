@@ -1,4 +1,4 @@
-package com.servicios.model;
+package com.ventas.model;
 
 public class ClienteDTO {
     private Long id;
@@ -28,4 +28,3 @@ public class ClienteDTO {
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
 }
-
