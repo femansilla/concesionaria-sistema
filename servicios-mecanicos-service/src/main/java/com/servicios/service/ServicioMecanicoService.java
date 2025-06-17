@@ -10,24 +10,29 @@ import com.servicios.client.ClienteFeignClient;
 import com.servicios.client.VehiculoFeignClient;
 import com.servicios.model.ClienteDTO;
 import com.servicios.model.ServicioMecanico;
+import com.servicios.model.TipoServicioMecanico;
 import com.servicios.model.VehiculoDTO;
 import com.servicios.repository.ServicioMecanicoRepository;
+import com.servicios.repository.TipoServicioMecanicoRepository;
 
 @Service
 public class ServicioMecanicoService {
 
     private final ServicioMecanicoRepository repository;
+    private final TipoServicioMecanicoRepository tiposRepository;
     private final ClienteFeignClient clienteClient;
     private final VehiculoFeignClient vehiculoClient;
 
     public ServicioMecanicoService(
         ServicioMecanicoRepository repository,
         ClienteFeignClient clienteClient,
-        VehiculoFeignClient vehiculoClient
+        VehiculoFeignClient vehiculoClient,
+        TipoServicioMecanicoRepository tiposRepository
     ) {
         this.repository = repository;
         this.clienteClient = clienteClient;
         this.vehiculoClient = vehiculoClient;
+        this.tiposRepository = tiposRepository;
     }
 
     public ServicioMecanico crearServicio(ServicioMecanico servicio) {
@@ -39,6 +44,11 @@ public class ServicioMecanicoService {
             throw new RuntimeException("Cliente o vehículo no válido");
         }
 
+        TipoServicioMecanico tipo = tiposRepository.findById(servicio.getServicio().getId())
+                .orElseThrow(() -> new RuntimeException("Tipo de servicio no encontrado"));
+
+        servicio.setServicio(tipo);
+        
         // Acceso al tipo de vehículo
         Integer garantiaAnios = vehiculo.getTipoVehiculo().getGarantiaAnios();
         Integer garantiaKm = vehiculo.getTipoVehiculo().getGarantiaKilometros();
@@ -67,11 +77,12 @@ public class ServicioMecanicoService {
         return repository.findById(id);
     }
 
-    public List<ServicioMecanico> buscarFiltrado(Long clienteId, Long vehiculoId, Boolean enGarantia) {
+    public List<ServicioMecanico> buscarFiltrado(Long clienteId, Long vehiculoId, Boolean enGarantia, Long tipoServicioId) {
         return repository.findAll().stream()
                 .filter(s -> clienteId == null || s.getClienteId().equals(clienteId))
                 .filter(s -> vehiculoId == null || s.getVehiculoId().equals(vehiculoId))
                 .filter(s -> enGarantia == null || s.getEnGarantia().equals(enGarantia))
+                .filter(s -> tipoServicioId == null || s.getServicio().getId().equals(tipoServicioId))
                 .toList();
     }
 

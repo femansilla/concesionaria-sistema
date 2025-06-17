@@ -1,17 +1,14 @@
 package com.servicios.controller;
 
 import com.servicios.model.ServicioMecanico;
-import com.servicios.repository.ServicioMecanicoRepository;
 import com.servicios.service.ServicioMecanicoService;
 
 import jakarta.validation.Valid;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -50,9 +47,10 @@ public class ServicioMecanicoController {
     public ResponseEntity<List<ServicioMecanico>> filtrar(
             @RequestParam(name = "clienteId", required = false) Long clienteId,
             @RequestParam(name = "vehiculoId", required = false) Long vehiculoId,
-            @RequestParam(name = "enGarantia", required = false) Boolean enGarantia) {
+            @RequestParam(name = "enGarantia", required = false) Boolean enGarantia,
+            @RequestParam(name = "tipoServicioId", required = false) Long tipoServicioId) {
 
-        List<ServicioMecanico> resultados = servicio.buscarFiltrado(clienteId, vehiculoId, enGarantia);
+        List<ServicioMecanico> resultados = servicio.buscarFiltrado(clienteId, vehiculoId, enGarantia, tipoServicioId);
         return ResponseEntity.ok(resultados);
     }
 

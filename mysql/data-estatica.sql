@@ -73,6 +73,13 @@ INSERT INTO cliente (nombre, apellido, dni, email, telefono) VALUES
 -- =====================
 -- SERVICIOS-MECANICOS
 -- =====================
+INSERT INTO tipo_servicio_mecanico (descripcion, precio)
+VALUES 
+  ('Cambio de aceite y filtros', 30000),
+  ('Revisión y ajuste de frenos', 80000),
+  ('Inspección y rotación de neumáticos', 20000);
+
+
 INSERT INTO servicio_mecanico (cliente_id, vehiculo_id, fecha_entrega, kilometros, en_garantia)
 VALUES 
 (1, 101, '2025-06-20', 45000, true),

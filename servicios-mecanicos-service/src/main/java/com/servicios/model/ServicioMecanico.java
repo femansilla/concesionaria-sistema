@@ -17,14 +17,16 @@ public class ServicioMecanico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "La descripcion del servicio es obligatoria")
-    private String descripcion;
-
     @NotNull(message = "El ID del cliente es obligatorio")
     private Long clienteId;
 
     @NotNull(message = "El ID del vehículo es obligatorio")
     private Long vehiculoId;
+
+    @NotNull(message = "Debe seleccionar el tipo de servicio")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "tipo_servicio_id")
+    private TipoServicioMecanico servicio;
 
     @NotNull(message = "La fecha de entrega es obligatoria")
     private LocalDate fechaEntrega;

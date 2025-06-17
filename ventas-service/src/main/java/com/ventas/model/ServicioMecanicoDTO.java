@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class ServicioMecanicoDTO {
     private Long id;
-    private String descripcion;
+    private TipoServicioMecanicoDTO servicio;
     private Integer kilometros;
     private Boolean enGarantia;
     private LocalDateTime fechaCarga;
@@ -19,12 +19,12 @@ public class ServicioMecanicoDTO {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public TipoServicioMecanicoDTO getServicio() {
+        return servicio;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setServicio(TipoServicioMecanicoDTO servicio) {
+        this.servicio = servicio;
     }
 
     public Integer getKilometros() {
