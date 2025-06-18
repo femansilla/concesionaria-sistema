@@ -1,7 +1,6 @@
 package com.ventas.model;
 
 import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -20,5 +19,13 @@ public class TipoServicioMecanicoDTO {
 
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 }

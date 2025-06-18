@@ -59,14 +59,14 @@ public class VentaService {
                 .vehiculoId(venta.getVehiculoId())
                 .tipoServicioId(ventaRequest.getTipoServicioMecanicoId())
                 .servicio(tipoServicio)
-                //la fecha de entrega tiene que ser fecha_operacion + cant_dias_servicio_mecanico, esta definida en TipoServicioMecanico
+                //la fecha de entrega tiene que ser fecha_operacion + dias_entrega_servicio_mecanico, estaria definida en TipoServicioMecanico
                 .fechaEntrega(venta.getFechaOperacion().plusDays(3))
                 .kilometros(ventaRequest.getKilometros())
                 .build();
 
             ServicioMecanicoDTO servicioCreado = servicioMecanicoClient.crearServicio(servicio);
             BigDecimal precioServicio = servicioCreado.getServicio().getPrecio();
-            //el precio deberia ademar de estar determinado por el servicio, tambien por el tipo de vehiculo
+            //el precio deberia ademas de estar determinado por el servicio, tambien por el tipo de vehiculo
             //  ej: pickup mas caro que sedan
             venta.setMonto(precioServicio.multiply(BigDecimal.valueOf(venta.getCantidad())));
             venta.setServicioMecanicoId(servicioCreado.getId());
