@@ -16,6 +16,7 @@
         <module>./clientes-service</module>
         <module>./ventas-service</module>
         <module>./servicios-mecanicos-service</module>
+        <module>./gateway-service</module>
     </modules>
 
     <name>Concesionaria Parent Project</name>

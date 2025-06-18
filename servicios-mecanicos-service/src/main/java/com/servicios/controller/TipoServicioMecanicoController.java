@@ -19,7 +19,7 @@ import com.servicios.repository.TipoServicioMecanicoRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/tipos")
+@RequestMapping("servicios/tipos")
 public class TipoServicioMecanicoController {
 
     private final TipoServicioMecanicoRepository repository;
