@@ -16,9 +16,8 @@ spring:
           uri: lb://vehiculos-stock-service
           predicates:
             - Path=/vehiculos/**
-            - Path=/stock/**
         - id: concesionarias-service
-          uri: lb://concesionarias-service
+          uri: lb://concesionaria-service
           predicates:
             - Path=/concesionarias/**
         - id: ventas-service
