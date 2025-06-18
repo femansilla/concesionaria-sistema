@@ -70,9 +70,7 @@ public class VentaService {
             //  ej: pickup mas caro que sedan
             venta.setMonto(precioServicio.multiply(BigDecimal.valueOf(venta.getCantidad())));
             venta.setServicioMecanicoId(servicioCreado.getId());
-        }
-
-        if (venta.getVehiculoId() != null) {
+        } else if (venta.getVehiculoId() != null) {
             // Es una venta de vehículo: actualizar stock
             boolean actualizado = vehiculoClient.descontarStock(venta.getVehiculoId(), venta.getCantidad());
             if (!actualizado) {
