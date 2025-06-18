@@ -1,3 +1,4 @@
+USE concesionaria_db;
 -- =====================
 -- PAISES
 -- =====================
@@ -40,6 +41,7 @@ VALUES (3, 'Tigre Motors', 'Av. Liniers 987', '2020-03-15', 1, 3);
 INSERT INTO concesionaria (id, nombre, direccion, fecha_apertura, pais_id, localidad_id)
 VALUES (4, 'Premium Cars San Isidro', 'Av. Centenario 456', '2017-11-01', 1, 2);
 
+USE vehiculos_db;
 -- =====================
 -- VEHICULOS - STOCK - TIPO VEHICULO
 -- =====================
@@ -62,6 +64,7 @@ VALUES (1, 1, 5, 2, 10);
 INSERT INTO stock (vehiculo_id, concesionaria_id, cantidad, tiempo_entrega_dias, tiempo_desde_central_dias) 
 VALUES (2, NULL, 20, 0, 7);
 
+USE clientes_db;
 -- =====================
 -- CLIENTES
 -- =====================
@@ -70,6 +73,8 @@ INSERT INTO cliente (nombre, apellido, dni, email, telefono) VALUES
 ('Carlos', 'Pérez', '27890123', 'carlos.perez@example.com', '1167890123'),
 ('Luciana', 'Martínez', '33123456', 'luciana.martinez@example.com', '1154321987');
 
+
+USE servicios_db;
 -- =====================
 -- SERVICIOS-MECANICOS
 -- =====================
@@ -85,6 +90,7 @@ VALUES
 (1, 101, '2025-06-20', 45000, true),
 (2, 102, '2025-06-15', 89000, false);
 
+USE ventas_db;
 -- =====================
 -- VENTAS
 -- =====================

@@ -12,12 +12,17 @@ para levantar los demas servicios
 
 3ro levantamos de la instancia del servicio que vamos a probar por ejemplo:
     mvn -pl concesionaria-service spring-boot:run
+    mvn -pl clientes-service spring-boot:run
+    mvn -pl vehiculos-stock-service spring-boot:run
+    mvn -pl servicios-mecanicos-service spring-boot:run
+    mvn -pl ventas-service spring-boot:run
+    mvn -pl gateway-service spring-boot:run
 
 desde el localhost:8761 vemos eureka
-    aca adentro vamos a tener el servicio listado
+    aca adentro vamos a tener los servicios listado
 
-
-
+tambien tenemos en la carpeta my sql, un archivo para insertar data en las db
+a modo de test
 
 en algun momento hay que implementar el apigateway
 referencias del proyecto:
