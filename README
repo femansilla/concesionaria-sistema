@@ -18,12 +18,14 @@ para levantar los demas servicios
     mvn -pl ventas-service spring-boot:run
     mvn -pl gateway-service spring-boot:run
 
+4to para levantar todos los servicios en paralelos lo hice en distintas consolas, por cada servicio que use DB debemos hacer el load-env.ps1.
+
 desde el localhost:8761 vemos eureka
-    aca adentro vamos a tener los servicios listado
+    aca adentro vamos a tener los servicios listados
 
-tambien tenemos en la carpeta my sql, un archivo para insertar data en las db
-a modo de test
+tambien tenemos en la carpeta my sql, un archivo para insertar data en las db a modo de test
+    data-estatica.sql
 
-en algun momento hay que implementar el apigateway
+en algun momento hay que implementar el apigateway (branch api-gateway)
 referencias del proyecto:
     https://dev.to/isaactony/building-your-first-microservice-system-with-spring-boot-a-beginners-guide-3b28
