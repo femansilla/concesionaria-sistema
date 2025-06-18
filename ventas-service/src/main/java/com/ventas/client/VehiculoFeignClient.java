@@ -13,7 +13,7 @@ public interface VehiculoFeignClient {
     @GetMapping("/vehiculos/{id}")
     VehiculoDTO getVehiculoById(@PathVariable("id") Long id);
 
-    @PutMapping("/stock/descontar")
+    @PutMapping("/vehiculos/stock/descontar")
     boolean descontarStock(
         @RequestParam("vehiculoId") Long vehiculoId,
         @RequestParam("cantidad") Integer cantidad);
