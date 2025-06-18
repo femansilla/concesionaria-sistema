@@ -2,6 +2,7 @@ package com.ventas.controller;
 
 import com.ventas.model.Venta;
 import com.ventas.model.VentaDTO;
+import com.ventas.model.VentaRequest;
 import com.ventas.repository.VentaRepository;
 import com.ventas.service.VentaService;
 
@@ -26,7 +27,7 @@ public class VentaController {
     }
 
     @PostMapping
-    public Venta save(@RequestBody Venta venta) {
+    public Venta save(@RequestBody VentaRequest venta) {
         return ventaService.save(venta);
     }
 

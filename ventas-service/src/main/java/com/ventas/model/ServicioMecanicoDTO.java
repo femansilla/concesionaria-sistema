@@ -1,15 +1,24 @@
 package com.ventas.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ServicioMecanicoDTO {
     private Long id;
+    private Long clienteId;
+    private Long vehiculoId;
+    private Long tipoServicioId;
     private TipoServicioMecanicoDTO servicio;
     private Integer kilometros;
     private Boolean enGarantia;
-    private LocalDateTime fechaCarga;
-
-    public ServicioMecanicoDTO() {}
+    private LocalDate fechaEntrega;
 
     public Long getId() {
         return id;
@@ -17,6 +26,30 @@ public class ServicioMecanicoDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    public Long getVehiculoId() {
+        return vehiculoId;
+    }
+
+    public void setVehiculoId(Long vehiculoId) {
+        this.vehiculoId = vehiculoId;
+    }
+
+    public Long getTipoServicioId() {
+        return tipoServicioId;
+    }
+
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     public TipoServicioMecanicoDTO getServicio() {
@@ -43,11 +76,11 @@ public class ServicioMecanicoDTO {
         this.enGarantia = enGarantia;
     }
 
-    public LocalDateTime getFechaCarga() {
-        return fechaCarga;
+    public LocalDate getFechaEntrega() {
+        return fechaEntrega;
     }
 
-    public void setFechaCarga(LocalDateTime fechaCarga) {
-        this.fechaCarga = fechaCarga;
+    public void setFechaEntrega(LocalDate fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 }

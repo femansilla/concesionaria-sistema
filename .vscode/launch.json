@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ServiciosApplication",
+            "request": "launch",
+            "mainClass": "com.servicios.ServiciosApplication",
+            "projectName": "servicios-mecanicos-service"
+        },
+        {
+            "type": "java",
+            "name": "VentasApplication",
+            "request": "launch",
+            "mainClass": "com.ventas.VentasApplication",
+            "projectName": "ventas-service"
+        },
+        {
+            "type": "java",
             "name": "VehiculosApplication",
             "request": "launch",
             "mainClass": "com.vehiculos.VehiculosApplication",

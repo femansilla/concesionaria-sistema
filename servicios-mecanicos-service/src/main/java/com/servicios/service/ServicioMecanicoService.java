@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.servicios.client.ClienteFeignClient;
@@ -18,7 +19,9 @@ import com.servicios.repository.TipoServicioMecanicoRepository;
 @Service
 public class ServicioMecanicoService {
 
+    @Autowired
     private final ServicioMecanicoRepository repository;
+    @Autowired
     private final TipoServicioMecanicoRepository tiposRepository;
     private final ClienteFeignClient clienteClient;
     private final VehiculoFeignClient vehiculoClient;
@@ -44,7 +47,11 @@ public class ServicioMecanicoService {
             throw new RuntimeException("Cliente o vehículo no válido");
         }
 
-        TipoServicioMecanico tipo = tiposRepository.findById(servicio.getServicio().getId())
+        Long tipoServicioId = servicio.getServicio().getId();
+        if(tipoServicioId == null)
+            tipoServicioId = servicio.getTipoServicioId();
+
+        TipoServicioMecanico tipo = tiposRepository.findById(tipoServicioId)
                 .orElseThrow(() -> new RuntimeException("Tipo de servicio no encontrado"));
 
         servicio.setServicio(tipo);

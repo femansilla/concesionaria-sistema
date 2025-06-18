@@ -44,4 +44,11 @@ public class Venta {
 
     // Relación opcional con servicio mecánico (si la venta se originó por uno)
     private Long servicioMecanicoId;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.fechaOperacion == null) {
+            this.fechaOperacion = LocalDate.now();
+        }
+    }
 }

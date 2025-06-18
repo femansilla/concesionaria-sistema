@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ventas.model.ServicioMecanicoDTO;
+import com.ventas.model.TipoServicioMecanicoDTO;
 
 @FeignClient(name = "servicios-mecanicos-service")
 public interface ServicioMecanicoFeignClient {
     @GetMapping("/servicios/{id}")
     ServicioMecanicoDTO getServicioById(@PathVariable("id") Long id);
 
+    @GetMapping("/tipos/{id}")
+    TipoServicioMecanicoDTO getTipoServicioById(@PathVariable("id") Long id);
+
     @PostMapping("/servicios")
-    ServicioMecanicoDTO crearServicio(@RequestBody Long servicioId);
+    ServicioMecanicoDTO crearServicio(@RequestBody ServicioMecanicoDTO servicio);
 }
 

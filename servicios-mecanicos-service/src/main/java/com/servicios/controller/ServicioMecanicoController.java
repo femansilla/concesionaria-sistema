@@ -5,6 +5,7 @@ import com.servicios.service.ServicioMecanicoService;
 
 import jakarta.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/servicios")
 public class ServicioMecanicoController {
 
+    @Autowired
     private final ServicioMecanicoService servicio;
 
     public ServicioMecanicoController(ServicioMecanicoService servicio) {
