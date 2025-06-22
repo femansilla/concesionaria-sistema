@@ -4,3 +4,6 @@
 /servicios-mecanicos-service/target
 /vehiculos-stock-service/target
 /ventas-service/target
+/gateway-service/target
+
+.vscode
