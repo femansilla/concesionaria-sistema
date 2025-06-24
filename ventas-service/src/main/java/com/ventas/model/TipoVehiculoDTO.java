@@ -5,6 +5,7 @@ public class TipoVehiculoDTO {
     private String descripcion;
     private Integer garantiaAnios;
     private Integer garantiaKilometros;
+    private Double adicionalServicio;
 
     public TipoVehiculoDTO() {}
 
@@ -38,5 +39,9 @@ public class TipoVehiculoDTO {
 
     public void setGarantiaKilometros(Integer garantiaKilometros) {
         this.garantiaKilometros = garantiaKilometros;
+    }
+
+    public Double getAdicionalServicio() {
+        return adicionalServicio;
     }
 }

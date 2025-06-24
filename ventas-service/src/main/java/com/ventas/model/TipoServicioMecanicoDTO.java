@@ -12,6 +12,7 @@ public class TipoServicioMecanicoDTO {
     private Long id;
     private String descripcion; // Cambio de aceite y filtros, Revisión y ajuste de frenos, Inspección y rotación de neumáticos, etc.
     private BigDecimal precio;
+    private Integer cantDiasServicio;
 
     public BigDecimal getPrecio() {
         return precio;
@@ -27,5 +28,9 @@ public class TipoServicioMecanicoDTO {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public Integer getCantDiasServicio() {
+        return cantDiasServicio;
     }
 }

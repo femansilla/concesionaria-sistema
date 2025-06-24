@@ -59,16 +59,18 @@ public class VentaService {
                 .vehiculoId(venta.getVehiculoId())
                 .tipoServicioId(ventaRequest.getTipoServicioMecanicoId())
                 .servicio(tipoServicio)
-                //la fecha de entrega tiene que ser fecha_operacion + dias_entrega_servicio_mecanico, estaria definida en TipoServicioMecanico
-                .fechaEntrega(venta.getFechaOperacion().plusDays(3))
+                .fechaEntrega(venta.getFechaOperacion().plusDays(tipoServicio.getCantDiasServicio()))
                 .kilometros(ventaRequest.getKilometros())
                 .build();
 
+
+            VehiculoDTO vehiculo = vehiculoClient.getVehiculoById(venta.getVehiculoId());
             ServicioMecanicoDTO servicioCreado = servicioMecanicoClient.crearServicio(servicio);
             BigDecimal precioServicio = servicioCreado.getServicio().getPrecio();
-            //el precio deberia ademas de estar determinado por el servicio, tambien por el tipo de vehiculo
-            //  ej: pickup mas caro que sedan
-            venta.setMonto(precioServicio.multiply(BigDecimal.valueOf(venta.getCantidad())));
+            Double precioServicioPorTipoVehiculo = vehiculo.getTipoVehiculo().getAdicionalServicio();
+            BigDecimal monto = precioServicio.multiply(BigDecimal.valueOf(precioServicioPorTipoVehiculo));
+            monto = monto.multiply(BigDecimal.valueOf(venta.getCantidad()));
+            venta.setMonto(monto);
             venta.setServicioMecanicoId(servicioCreado.getId());
         } else if (venta.getVehiculoId() != null) {
             // Es una venta de vehículo: actualizar stock

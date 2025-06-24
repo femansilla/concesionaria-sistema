@@ -32,4 +32,8 @@ public class TipoVehiculo {
     @NotNull(message = "Kilómetros de garantía es obligatorio")
     @Min(value = 0, message = "Los kilómetros de garantía deben ser cero o más")
     private Integer garantiaKilometros;
+
+    @NotNull(message = "El adicional por servicio es obligatorio.")
+    @Min(value = 1, message = "El adicional por servicio mecanico debe ser 1 o más.")
+    private Double adicionalServicio;
 }
