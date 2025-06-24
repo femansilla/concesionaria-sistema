@@ -3,7 +3,6 @@ package com.ventas.controller;
 import com.ventas.model.Venta;
 import com.ventas.model.VentaDTO;
 import com.ventas.model.VentaRequest;
-import com.ventas.repository.VentaRepository;
 import com.ventas.service.VentaService;
 
 import org.springframework.http.ResponseEntity;

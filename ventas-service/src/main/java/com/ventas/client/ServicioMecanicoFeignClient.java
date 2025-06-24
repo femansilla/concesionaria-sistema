@@ -14,7 +14,7 @@ public interface ServicioMecanicoFeignClient {
     @GetMapping("/servicios/{id}")
     ServicioMecanicoDTO getServicioById(@PathVariable("id") Long id);
 
-    @GetMapping("/tipos/{id}")
+    @GetMapping("servicios/tipos/{id}")
     TipoServicioMecanicoDTO getTipoServicioById(@PathVariable("id") Long id);
 
     @PostMapping("/servicios")

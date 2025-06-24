@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: vehiculos-stock-service
+          uri: lb://vehiculos-stock-service
+          predicates:
+            - Path=/vehiculos/**
+        - id: concesionarias-service
+          uri: lb://concesionaria-service
+          predicates:
+            - Path=/concesionarias/**
+        - id: ventas-service
+          uri: lb://ventas-service
+          predicates:
+            - Path=/ventas/**
+        - id: clientes-service
+          uri: lb://clientes-service
+          predicates:
+            - Path=/clientes/**
+        - id: servicios-mecanicos-service
+          uri: lb://servicios-mecanicos-service
+          predicates:
+            - Path=/servicios/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
