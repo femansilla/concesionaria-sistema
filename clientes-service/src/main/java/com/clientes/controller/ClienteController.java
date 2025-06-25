@@ -1,7 +1,7 @@
 package com.clientes.controller;
 
-import com.clientes.model.Cliente;
-import com.clientes.repository.ClienteRepository;
+import com.clientes.DTO.ClienteDTO;
+import com.clientes.service.ClienteService;
 
 import jakarta.validation.Valid;
 
@@ -14,23 +14,19 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    private final ClienteRepository repository;
+    @Autowired
+    private ClienteService clienteService;
 
-    public ClienteController(ClienteRepository repository) {
-        this.repository = repository;
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     @GetMapping
-    public List<Cliente> findAll(
+    public List<ClienteDTO> buscarClientes(
             @RequestParam(name = "nombre", required = false) String nombre,
             @RequestParam(name = "apellido", required = false) String apellido,
             @RequestParam(name = "dni", required = false) String dni) {
-
-        return repository.findAll().stream()
-                .filter(c -> nombre == null || c.getNombre().toLowerCase().contains(nombre.toLowerCase()))
-                .filter(c -> apellido == null || c.getApellido().toLowerCase().contains(apellido.toLowerCase()))
-                .filter(c -> dni == null || c.getDni().equalsIgnoreCase(dni))
-                .toList();
+        return clienteService.buscarClientes(nombre, apellido, dni);
     }
 
     @PutMapping("/{id}")
