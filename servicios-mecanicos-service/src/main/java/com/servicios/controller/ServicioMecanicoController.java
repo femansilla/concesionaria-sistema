@@ -1,6 +1,6 @@
 package com.servicios.controller;
 
-import com.servicios.model.ServicioMecanico;
+import com.servicios.DTO.ServicioMecanicoDTO;
 import com.servicios.service.ServicioMecanicoService;
 
 import jakarta.validation.Valid;
@@ -14,20 +14,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/servicios")
+@RequiredArgsConstructor
 public class ServicioMecanicoController {
 
     @Autowired
     private final ServicioMecanicoService servicio;
+    private final ServicioMecanicoMapper mapper;
 
     public ServicioMecanicoController(ServicioMecanicoService servicio) {
         this.servicio = servicio;
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody @Valid ServicioMecanico servicioMecanico) {
+    public ResponseEntity<?> crear(@RequestBody @Valid ServicioMecanico ServicioMecanicoDTO dto) {
         try {
-            ServicioMecanico creado = servicio.crearServicio(servicioMecanico);
-            return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+
+            ServicioMecanico creado = servicio.crearServicio(dto);
+            return ResponseEntity.ok(mapper.toDTO(creado));
+
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -35,7 +39,10 @@ public class ServicioMecanicoController {
 
     @GetMapping
     public List<ServicioMecanico> findAll() {
-        return servicio.findAll();
+
+        return ResponseEntity.ok(servicio.findAll().stream()
+                .map(mapper::toDTO).toList());
+
     }
 
     @GetMapping("/{id}")

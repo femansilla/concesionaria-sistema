@@ -17,12 +17,14 @@ import com.servicios.repository.ServicioMecanicoRepository;
 import com.servicios.repository.TipoServicioMecanicoRepository;
 
 @Service
+@RequiredArgsConstructor
 public class ServicioMecanicoService {
 
     @Autowired
     private final ServicioMecanicoRepository repository;
     @Autowired
     private final TipoServicioMecanicoRepository tiposRepository;
+    private final ServicioMecanicoMapper mapper;
     private final ClienteFeignClient clienteClient;
     private final VehiculoFeignClient vehiculoClient;
 
@@ -36,6 +38,13 @@ public class ServicioMecanicoService {
         this.clienteClient = clienteClient;
         this.vehiculoClient = vehiculoClient;
         this.tiposRepository = tiposRepository;
+    }
+
+    public ServicioMecanico crearServicio(ServicioMecanicoDTO dto) {
+        TipoServicioMecanico tipo = tipoRepo.findById(dto.getTipoServicioId())
+            .orElseThrow(() -> new IllegalArgumentException("Tipo de servicio no válido"));
+        ServicioMecanico entity = mapper.toEntity(dto, tipo);
+        return repository.save(entity);
     }
 
     public ServicioMecanico crearServicio(ServicioMecanico servicio) {
