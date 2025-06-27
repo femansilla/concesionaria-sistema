@@ -1,10 +1,12 @@
 package com.concesionaria.controller;
 
-import com.concesionaria.model.Concesionaria;
+import com.concesionaria.DTO.LocalidadDTO;
 import com.concesionaria.model.Localidad;
 import com.concesionaria.repository.LocalidadRepository;
+import com.concesionaria.service.LocalidadService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,38 +14,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/localidades")
+@RequestMapping("/concesionarias/localidades")
+@RequiredArgsConstructor
 public class LocalidadController {
 
-    private final LocalidadRepository repository;
-
-    public LocalidadController(LocalidadRepository repository) {
-        this.repository = repository;
-    }
+    private final LocalidadService service;
 
     @GetMapping
-    public List<Localidad> findAll() {
-        return repository.findAll();
+    public List<LocalidadDTO> findAll(@RequestParam(name = "provinciaId", required = false) Long provinciaId,
+                                      @RequestParam(name = "nombre", required = false) String nombre) {
+        return service.findAll(provinciaId, nombre);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Localidad> findById(@PathVariable("id") Long id) {
-        return repository.findById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<LocalidadDTO> findById(@PathVariable("id") Long id) {
+        return service.findById(id).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> eliminar(@PathVariable("id") Long id) {
-        return repository.findById(id)
-            .map(c -> {
-                repository.deleteById(id);
-                return ResponseEntity.noContent().build();
-            }).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
-    public Localidad save(@RequestBody @Valid Localidad localidad) {
-        return repository.save(localidad);
+    public LocalidadDTO save(@RequestBody @Valid LocalidadDTO dto) {
+        return service.save(dto);
     }
 }

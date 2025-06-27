@@ -1,8 +1,13 @@
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\AppConfig.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\ConcesionariaApplication.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\controller\ConcesionariaController.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\controller\LocalidadController.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\controller\PaisController.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\controller\ProvinciaController.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\DTO\ConcesionariaDTO.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\DTO\LocalidadDTO.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\DTO\PaisDTO.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\DTO\ProvinciaDTO.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\model\Concesionaria.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\model\Localidad.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\model\Pais.java
@@ -11,3 +16,7 @@ C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\repository\LocalidadRepository.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\repository\PaisRepository.java
 C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\repository\ProvinciaRepository.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\service\ConcesionariaService.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\service\LocalidadService.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\service\PaisService.java
+C:\Users\Francisco Mansilla\Documents\GitHub\concesionaria-sistema\concesionaria-service\src\main\java\com\concesionaria\service\ProvinciaService.java

@@ -258,7 +258,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/tipos",
+					"raw": "{{base_url}}/servicios/tipos",
 					"host": [
 						"{{base_url}}"
 					],

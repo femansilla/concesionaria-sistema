@@ -63,7 +63,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/paises",
+					"raw": "{{base_url}}/concesionarias/paises",
 					"host": [
 						"{{base_url}}"
 					],
@@ -95,7 +95,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/provincias",
+					"raw": "{{base_url}}/concesionarias/provincias",
 					"host": [
 						"{{base_url}}"
 					],
@@ -259,7 +259,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8081"
+			"value": "http://localhost:8080"
 		},
 		{
 			"key": "id",
