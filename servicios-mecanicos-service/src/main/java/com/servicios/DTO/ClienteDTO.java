@@ -1,4 +1,4 @@
-package com.servicios.model;
+package com.servicios.DTO;
 
 public class ClienteDTO {
     private Long id;

@@ -28,9 +28,6 @@ public class ServicioMecanico {
     @JoinColumn(name = "tipo_servicio_id")
     private TipoServicioMecanico servicio;
     
-    @Transient
-    private Long tipoServicioId;
-
     @NotNull(message = "La fecha de entrega es obligatoria")
     private LocalDate fechaEntrega;
 

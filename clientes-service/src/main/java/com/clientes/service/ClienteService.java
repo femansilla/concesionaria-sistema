@@ -3,14 +3,10 @@ package com.clientes.service;
 import com.clientes.DTO.ClienteDTO;
 import com.clientes.model.Cliente;
 import com.clientes.repository.ClienteRepository;
-import com.clientes.specification.ClienteSpecification;
-
-import ch.qos.logback.core.model.Model;
 import jakarta.persistence.EntityNotFoundException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

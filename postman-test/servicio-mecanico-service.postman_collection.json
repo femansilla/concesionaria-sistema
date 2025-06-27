@@ -321,7 +321,7 @@
 		},
 		{
 			"key": "base_url",
-			"value": "http://localhost:8084"
+			"value": "http://localhost:8080"
 		}
 	]
 }

@@ -2,6 +2,7 @@ package com.servicios.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,46 +14,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.servicios.DTO.TipoServicioMecanicoDTO;
 import com.servicios.model.TipoServicioMecanico;
 import com.servicios.repository.TipoServicioMecanicoRepository;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("servicios/tipos")
+@RequiredArgsConstructor
 public class TipoServicioMecanicoController {
 
     private final TipoServicioMecanicoRepository repository;
-
-    public TipoServicioMecanicoController(TipoServicioMecanicoRepository repository) {
-        this.repository = repository;
-    }
+    private final ModelMapper mapper;
 
     @GetMapping
-    public List<TipoServicioMecanico> findAll(
-            @RequestParam(name = "descripcion", required = false) String descripcion) {
-
-        return repository.findAll().stream()
-                .filter(c -> descripcion == null || c.getDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
-                .toList();
+    public List<TipoServicioMecanicoDTO> findAll(@RequestParam(name = "descripcion", required = false) String descripcion) {
+        return repository.buscarPorDescripcion(descripcion)
+                .stream().map(t -> mapper.map(t, TipoServicioMecanicoDTO.class)).toList();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, @Valid @RequestBody TipoServicioMecanico TipoServicioMecanicoActualizado) {
-        return repository.findById(id).map(TipoServicioMecanicoExistente -> {
-            TipoServicioMecanicoExistente.setDescripcion(TipoServicioMecanicoActualizado.getDescripcion());
-            return ResponseEntity.ok(repository.save(TipoServicioMecanicoExistente));
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @Valid @RequestBody TipoServicioMecanicoDTO dto) {
+        return repository.findById(id).map(entidad -> {
+            entidad.setDescripcion(dto.getDescripcion());
+            entidad.setPrecio(dto.getPrecio());
+            entidad.setCantDiasServicio(dto.getCantDiasServicio());
+            return ResponseEntity.ok(mapper.map(repository.save(entidad), TipoServicioMecanicoDTO.class));
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public TipoServicioMecanico save(@RequestBody @Valid TipoServicioMecanico TipoServicioMecanico) {
-        return repository.save(TipoServicioMecanico);
+    public TipoServicioMecanicoDTO save(@RequestBody @Valid TipoServicioMecanicoDTO dto) {
+        TipoServicioMecanico entidad = mapper.map(dto, TipoServicioMecanico.class);
+        return mapper.map(repository.save(entidad), TipoServicioMecanicoDTO.class);
     }
 
     @GetMapping("/{id}")
-    public TipoServicioMecanico findById(@PathVariable("id") Long id) {
-        return repository.findById(id).orElse(null);
+    public ResponseEntity<TipoServicioMecanicoDTO> findById(@PathVariable("id") Long id) {
+        return repository.findById(id)
+                .map(e -> mapper.map(e, TipoServicioMecanicoDTO.class))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

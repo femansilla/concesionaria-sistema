@@ -78,11 +78,11 @@ USE servicios_db;
 -- =====================
 -- SERVICIOS-MECANICOS
 -- =====================
-INSERT INTO tipo_servicio_mecanico (descripcion, precio)
+INSERT INTO tipo_servicio_mecanico (descripcion, precio, cant_dias_servicio)
 VALUES 
-  ('Cambio de aceite y filtros', 30000),
-  ('Revisión y ajuste de frenos', 80000),
-  ('Inspección y rotación de neumáticos', 20000);
+  ('Cambio de aceite y filtros', 30000, 5),
+  ('Revisión y ajuste de frenos', 80000, 3),
+  ('Inspección y rotación de neumáticos', 20000, 1);
 
 
 INSERT INTO servicio_mecanico (cliente_id, vehiculo_id, fecha_entrega, kilometros, en_garantia)

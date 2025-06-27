@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.servicios.model.VehiculoDTO;
+import com.servicios.DTO.VehiculoDTO;
 
 @FeignClient(name = "vehiculos-stock-service")
 public interface VehiculoFeignClient {
