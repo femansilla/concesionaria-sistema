@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.vehiculos.model.ConcesionariaDTO;
+import com.vehiculos.DTO.ConcesionariaDTO;
 
 @FeignClient(name = "concesionaria-service", path = "/concesionarias")
 public interface ConcesionariaFeignClient {
