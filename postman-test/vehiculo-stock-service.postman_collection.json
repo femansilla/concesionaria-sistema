@@ -92,11 +92,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/stock",
+					"raw": "{{base_url}}/vehiculos/stock",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"vehiculos",
 						"stock"
 					]
 				},
@@ -124,11 +125,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/stock/vehiculo/1",
+					"raw": "{{base_url}}/vehiculos/stock/vehiculo/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"vehiculos",
 						"stock",
 						"vehiculo",
 						"1"
@@ -158,11 +160,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/stock/vehiculo/1?concesionariaId=1",
+					"raw": "{{base_url}}/vehiculos/stock/vehiculo/1?concesionariaId=1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"vehiculos",
 						"stock",
 						"vehiculo",
 						"1"
@@ -198,11 +201,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/stock/vehiculo/2?concesionariaId=1",
+					"raw": "{{base_url}}/vehiculos/stock/vehiculo/2?concesionariaId=1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"vehiculos",
 						"stock",
 						"vehiculo",
 						"2"
@@ -224,11 +228,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/tipos",
+					"raw": "{{base_url}}/vehiculos/tipos",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"vehiculos",
 						"tipos"
 					]
 				}
@@ -236,7 +241,7 @@
 			"response": []
 		},
 		{
-			"name": "Post data",
+			"name": "vehiculo",
 			"event": [
 				{
 					"listen": "test",
@@ -257,7 +262,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"marca\": \"Toyota\",\n  \"modelo\": \"Hilux\",\n  \"anio\": 2022,\n  \"precioUnidad\": 39500.00,\n  \"tipoVehiculo\": {\n    \"id\": 1\n  }\n}",
+					"raw": "{\n  \"marca\": \"Nissan\",\n  \"modelo\": \"Frontier\",\n  \"anio\": 2024,\n  \"precioUnidad\": 39000.00,\n  \"tipoVehiculoId\": 3\n}",
 					"options": {
 						"raw": {
 							"language": "json"

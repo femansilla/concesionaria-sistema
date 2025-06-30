@@ -68,6 +68,7 @@
 						"{{base_url}}"
 					],
 					"path": [
+						"concesionarias",
 						"paises"
 					]
 				},
@@ -100,6 +101,7 @@
 						"{{base_url}}"
 					],
 					"path": [
+						"concesionarias",
 						"provincias"
 					]
 				},
@@ -129,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nombre\": \"AutoNorte\",\n  \"direccion\": \"Av. Libertador 1234\",\n  \"fechaApertura\": \"2020-05-01\",\n  \"pais\": { \"id\": 1 },\n  \"provincia\": { \"id\": 1 },\n  \"localidad\": { \"id\": 1 }\n}",
+					"raw": "{\n  \"nombre\": \"AutoNorte\",\n  \"direccion\": \"Av. Libertador 1234\",\n  \"fechaApertura\": \"2020-05-01\",\n  \"paisId\": 1,\n  \"provinciaId\": 1,\n  \"localidadId\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"

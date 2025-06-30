@@ -59,13 +59,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/ventas/1",
+					"raw": "{{base_url}}/ventas/6",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"ventas",
-						"1"
+						"6"
 					]
 				},
 				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -94,7 +94,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"venta\": {\n    \"clienteId\": 3,\n    \"empleadoId\": 2,\n    \"vehiculoId\": 2,\n    \"cantidad\": 1\n  }\n}\n",
+					"raw": "{\n  \"clienteId\": 3,\n  \"empleadoId\": 101,\n  \"vehiculoId\": 1,\n  \"cantidad\": 2,\n  \"concesionariaId\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"venta\": {\n    \"clienteId\": 1,\n    \"empleadoId\": 4,\n    \"vehiculoId\": 1,\n    \"cantidad\": 1\n  },\n  \"tipoServicioMecanicoId\": 2,\n  \"kilometros\": 38500\n}",
+					"raw": "{\n  \"clienteId\": 1,\n  \"empleadoId\": 101,\n  \"servicioMecanicoId\": 13,\n  \"tipoServicioMecanicoId\": 2,\n  \"vehiculoId\": 6\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -184,7 +184,7 @@
 		},
 		{
 			"key": "base_url",
-			"value": "http://localhost:8085"
+			"value": "http://localhost:8080"
 		}
 	]
 }
