@@ -44,6 +44,9 @@ public class Venta {
 
     // Relación opcional con servicio mecánico (si la venta se originó por uno)
     private Long servicioMecanicoId;
+    
+    // Relación para venta de vehiculo (si la venta se originó por uno)
+    private Long concesionariaId;
 
     @PrePersist
     public void prePersist() {

@@ -1,6 +1,5 @@
 package com.ventas.model;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,15 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ValidVentaRequest
 public class VentaRequest {
-    @Valid
-    @NotNull(message = "La información de la venta es obligatoria")
-    private Venta venta;
+    @NotNull
+    private Long clienteId;
+    @NotNull
+    private Long empleadoId;
 
-    // Solo requerido si es una venta de servicio mecánico
+    // Si es venta de vehículo
+    private Long vehiculoId;
+    @Min(value = 1, message = "La cantidad debe ser al menos 1")
+    private Integer cantidad;
+    private Long concesionariaId;
+
+    // Si es venta de servicio
+    private Long servicioMecanicoId;
     private Long tipoServicioMecanicoId;
-
-    @Min(value = 0, message = "El kilometraje no puede ser negativo")
-    private Integer kilometros;
 }
