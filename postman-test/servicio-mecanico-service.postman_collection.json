@@ -146,7 +146,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"clienteId\": 2,\n  \"vehiculoId\": 2,\n  \"servicio\": {\n    \"id\": 2\n  },\n  \"fechaEntrega\": \"2025-06-17\",\n  \"kilometros\": 102000\n}",
+					"raw": "{\n  \"clienteId\": 2,\n  \"vehiculoId\": 6,\n  \"tipoServicioId\": 2,\n  \"kilometros\": 280000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -263,6 +263,7 @@
 						"{{base_url}}"
 					],
 					"path": [
+						"servicios",
 						"tipos"
 					]
 				}

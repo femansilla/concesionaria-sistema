@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.servicios.DTO.ClienteDTO;
 import com.servicios.DTO.ServicioMecanicoDTO;
+import com.servicios.DTO.TipoVehiculoDTO;
 import com.servicios.DTO.VehiculoDTO;
 import com.servicios.client.ClienteFeignClient;
 import com.servicios.client.VehiculoFeignClient;
@@ -43,9 +44,15 @@ public class ServicioMecanicoService {
         TipoServicioMecanico tipo = tiposRepository.findById(dto.getTipoServicioId())
                 .orElseThrow(() -> new RuntimeException("Tipo de servicio no encontrado"));
 
+        // Validación del tipo de vehiculo
+        TipoVehiculoDTO tipoVehiculo = vehiculoClient.getTipoVehiculoById(vehiculo.getTipoVehiculoId());
+        if (tipoVehiculo == null) {
+            throw new RuntimeException("Tipo de vehiculo no encontrado");
+        }
+
         // Acceso al tipo de vehículo
-        Integer garantiaAnios = vehiculo.getTipoVehiculo().getGarantiaAnios();
-        Integer garantiaKm = vehiculo.getTipoVehiculo().getGarantiaKilometros();
+        Integer garantiaAnios = tipoVehiculo.getGarantiaAnios();
+        Integer garantiaKm = tipoVehiculo.getGarantiaKilometros();
 
         // Evaluación de garantía
         boolean enGarantia = false;
@@ -56,8 +63,19 @@ public class ServicioMecanicoService {
         } else if (aniosTranscurridos <= garantiaAnios) {
             enGarantia = true;
         }
+        // Validar fecha de entrega
+        if (dto.getFechaEntrega() == null) {    
+            // Asignar fecha de entrega por defecto
+            dto.setFechaEntrega(LocalDate.now().plusDays(tipo.getCantDiasServicio())); // Aumentar X días segun tipo de servicio
+        }   
+        if (dto.getFechaEntrega().isBefore(LocalDate.now())) {
+            throw new RuntimeException("La fecha de entrega no puede ser anterior a la fecha actual");
+        }
+        // Validar kilometraje
+        if (dto.getKilometros() == null || dto.getKilometros() < 0) {
+            throw new RuntimeException("El kilometraje no puede ser negativo");
+        }   
 
-        
         ServicioMecanico entidad = mapper.map(dto, ServicioMecanico.class);
         // asignar cliente y vehículo
         entidad.setClienteId(cliente.getId());  
@@ -66,18 +84,11 @@ public class ServicioMecanicoService {
         entidad.setServicio(tipo);
         // Asignar automáticamente el valor de garantía
         entidad.setEnGarantia(enGarantia);
-        // Validar fecha de entrega
-        if (dto.getFechaEntrega() == null) {    
-            throw new RuntimeException("La fecha de entrega es obligatoria");
-        }   
-        if (dto.getFechaEntrega().isBefore(LocalDate.now())) {
-            throw new RuntimeException("La fecha de entrega no puede ser anterior a la fecha actual");
-        }   
-        // Validar kilometraje
-        if (dto.getKilometros() == null || dto.getKilometros() < 0) {
-            throw new RuntimeException("El kilometraje no puede ser negativo");
-        }   
-        
+        // Asignar kilometraje
+        entidad.setKilometros(dto.getKilometros());
+        // Asignar fecha de entrega
+        entidad.setFechaEntrega(dto.getFechaEntrega());
+
         return mapper.map(repository.save(entidad), ServicioMecanicoDTO.class);
     }
 
