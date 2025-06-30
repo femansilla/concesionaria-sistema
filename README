@@ -1,7 +1,3 @@
-
-REVISAR LOS POST Y PUT DE LOS TEST EN POSTMAN CON LA IMPLEMENTACION DE LOS DTOs CAMBIO LA MENERA QUE RECIBE LOS PARAMS
-
-
 para levantar eureka:
     mvn -pl eureka-server spring-boot:run
 
